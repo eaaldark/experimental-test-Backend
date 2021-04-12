@@ -1,7 +1,9 @@
 import express from "express";
-import FileRoutes from './routes/index';
-import './config/config_env'
+import FileRoutes from './app/routes/index';
+import './app/config/config_env';
+
 const app = express();
+const PORT = process.env.API_PORT
 
 //middlewares
 app.use(express.json());
@@ -10,4 +12,4 @@ app.use(express.urlencoded({extended:false}));
 //Routes
 app.use(FileRoutes);
 
-app.listen(3000, () => console.log("App Listening on port " + 3000));
+app.listen(PORT, () => console.log("App Listening on port " + PORT));

@@ -17,7 +17,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./src/index.ts"
+    "local": "nodemon ./src/index.ts NODE_ENV=local"
   },
   "repository": {
     "type": "git",
