@@ -8,7 +8,7 @@ const QITEM = "select * from public.experimental_table where id = $1";
 const QINSERT = "INSERT INTO public.experimental_table(firtsname, middlename, lastname, phonenumber, birthday, email) values ($1, $2, $3, $4, $5, $6);";
 const QUPDATE = "UPDATE public.experimental_table SET firtsname=$1, middlename=$2, lastname=$3, phonenumber=$4, email=$5 WHERE id = $6;";
 const QDELETE = "DELETE FROM public.experimental_table WHERE id = $1;";
-const QMAXITEM = "SELECT id, firtsname, middlename, lastname, phonenumber, birthday, email FROM public.experimental_table where id = (SELECT max(id) FROM public.experimental_table);"
+const QMAXITEM = "SELECT * FROM public.experimental_table where id = (SELECT max(id) FROM public.experimental_table);"
 
 const homePage = async (req: Request, res: Response): Promise<Response> => {
   try {
@@ -43,7 +43,7 @@ const insertItem = async (req: Request, res: Response): Promise<Response> => {
   const { firtsname, middlename, lastname, phonenumber, birthday, email } =
     req.body;
   try {
-    const response = await pool.query(QINSERT, [
+    const response: QueryResult  = await pool.query(QINSERT, [
       firtsname,
       middlename,
       lastname,
@@ -64,8 +64,8 @@ const insertItem = async (req: Request, res: Response): Promise<Response> => {
 const updateItem = async (req: Request, res: Response): Promise<Response> => {
   const { id, firtsname, middlename, lastname, phonenumber, email } = req.body;
   try {
-    const currentItem = await pool.query(QITEM, [id]);
-    const response = await pool.query(QUPDATE, [
+    const currentItem: QueryResult = await pool.query(QITEM, [id]);
+    const response: QueryResult = await pool.query(QUPDATE, [
       firtsname,
       middlename,
       lastname,
@@ -89,8 +89,8 @@ const updateItem = async (req: Request, res: Response): Promise<Response> => {
 const deleteItem = async (req: Request, res: Response): Promise<Response> => {
   const { id } = req.body;
   try {
-    const currentItem = await pool.query(QITEM, [id]);
-    const response = await pool.query(QDELETE, [id]);
+    const currentItem : QueryResult = await pool.query(QITEM, [id]);
+    const response : QueryResult = await pool.query(QDELETE, [id]);
     return res.status(200).json({
       message: "Item deleted OK",
       rowcount: response.rowCount,
