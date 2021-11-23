@@ -1,13 +1,13 @@
 import express from "express";
-import FileRoutes from './app/routes/index';
-import './app/config/config_env';
+import FileRoutes from "./app/routes/index";
+import "./app/config/config_env";
 
 const app = express();
-const PORT = process.env.API_PORT
+const PORT = process.env.API_PORT;
 
 //middlewares
 app.use(express.json());
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended: false }));
 
 //Routes
 app.use(FileRoutes);

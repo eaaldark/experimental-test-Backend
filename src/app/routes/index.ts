@@ -1,12 +1,19 @@
-import {Router} from 'express';
+import { Router } from "express";
 const router = Router();
-import { insertItem, getItems, getItem, homePage, updateItem, deleteItem } from '../controllers/index.controller'
+import {
+  insertItem,
+  getItems,
+  getItem,
+  homePage,
+  updateItem,
+  deleteItem,
+} from "../controllers/index.controller";
 
-router.get('/', homePage);
-router.get('/get', getItems);
-router.get('/getitem', getItem);
-router.post('/insert', insertItem);
-router.post('/update', updateItem);
-router.post('/delete', deleteItem);
+router.get("/", homePage);
+router.get("/get", getItems);
+router.get("/getitem", getItem);
+router.post("/insert", insertItem);
+router.post("/update", updateItem);
+router.post("/delete", deleteItem);
 
 export default router;
