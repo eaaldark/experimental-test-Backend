@@ -7,7 +7,7 @@ import {
   homePage,
   updateItem,
   deleteItem,
-} from "../controllers/index.controller";
+} from "../controllers/controller";
 
 router.get("/", homePage);
 router.get("/get", getItems);

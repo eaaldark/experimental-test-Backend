@@ -12,4 +12,4 @@ app.use(express.urlencoded({ extended: false }));
 //Routes
 app.use(FileRoutes);
 
-app.listen(PORT, () => console.log("App Listening on port " + PORT));
+app.listen(PORT, () => console.log(`⚡️ [server]: Server is running at http://localhost:${PORT}⚡️`));

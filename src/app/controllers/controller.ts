@@ -40,8 +40,7 @@ const getItem = async (req: Request, res: Response): Promise<Response> => {
 };
 
 const insertItem = async (req: Request, res: Response): Promise<Response> => {
-  const { firtsname, middlename, lastname, phonenumber, birthday, email } =
-    req.body;
+  const { firtsname, middlename, lastname, phonenumber, birthday, email } = req.body;
   try {
     const response: QueryResult  = await pool.query(QINSERT, [
       firtsname,
