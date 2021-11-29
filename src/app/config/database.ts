@@ -1,12 +1,12 @@
 import { Pool } from "pg";
-import "./config_env";
+import { PG_DATABASE, PG_HOST, PG_PORT, PG_USER, PS_PASSWORD } from "./config_env";
 
 const pool = new Pool({
-  user: process.env.PG_USER,
-  host: process.env.PG_HOST,
-  password: process.env.PS_PASSWORD,
-  database: process.env.PG_DATABASE,
-  port: Number(process.env.PG_PORT),
+  user: PG_USER,
+  host: PG_HOST,
+  password: PS_PASSWORD,
+  database: PG_DATABASE,
+  port: Number(PG_PORT),
 });
 
 pool.connect((err, client, release) => {

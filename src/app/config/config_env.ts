@@ -13,18 +13,17 @@ const {
   PS_PASSWORD,
   PG_DATABASE,
   PG_PORT,
+  CLIENT_HOST,
 } = process.env;
 
-const enviromentsConfig = {
-  local: {
-    port: API_PORT,
-    kid: KEY_ID,
-    dbuser: PG_USER,
-    dbhost: PG_HOST,
-    dbppass: PS_PASSWORD,
-    dbname: PG_DATABASE,
-    dbport: PG_PORT,
-  },
+export {
+  NODE_ENV,
+  API_PORT,
+  KEY_ID,
+  PG_USER,
+  PG_HOST,
+  PS_PASSWORD,
+  PG_DATABASE,
+  PG_PORT,
+  CLIENT_HOST,
 };
-
-export { config };
