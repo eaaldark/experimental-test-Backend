@@ -1,7 +1,7 @@
-import { Pool } from "pg";
+import { Pool, QueryResult } from "pg";
 import { PG_DATABASE, PG_HOST, PG_PORT, PG_USER, PS_PASSWORD } from "./config_env";
 
-const pool = new Pool({
+const postgreSQLConnect = new Pool({
   user: PG_USER,
   host: PG_HOST,
   password: PS_PASSWORD,
@@ -9,7 +9,7 @@ const pool = new Pool({
   port: Number(PG_PORT),
 });
 
-pool.connect((err, client, release) => {
+postgreSQLConnect.connect((err, client, release) => {
   if (err) {
     return console.error("Error acquiring client", err.stack);
   }
@@ -24,4 +24,4 @@ pool.connect((err, client, release) => {
   });
 });
 
-export { pool };
+export { postgreSQLConnect, QueryResult };
