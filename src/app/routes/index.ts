@@ -8,6 +8,7 @@ import {
   updateItem,
   deleteItem,
 } from "../controllers/controller";
+import { userRouter } from "./user";
 
 router.get("/", homePage);
 router.get("/get", getItems);
@@ -15,5 +16,6 @@ router.get("/getitem", getItem);
 router.post("/insert", insertItem);
 router.post("/update", updateItem);
 router.post("/delete", deleteItem);
+router.use("/user", userRouter);
 
 export default router;
