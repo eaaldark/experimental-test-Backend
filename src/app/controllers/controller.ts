@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
-import { pool } from "../config/database";
-import { QueryResult } from "pg";
+import { postgreSQLConnect, QueryResult } from "../config/database";
 
 //Queries
 const QITEMS = "select * from public.experimental_table";
@@ -20,7 +19,7 @@ const homePage = async (req: Request, res: Response): Promise<Response> => {
 
 const getItems = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const response: QueryResult = await pool.query(QITEMS);
+    const response: QueryResult = await postgreSQLConnect.query(QITEMS);
     return res.status(200).json(response.rows);
   } catch (e) {
     console.log(e);
@@ -31,7 +30,7 @@ const getItems = async (req: Request, res: Response): Promise<Response> => {
 const getItem = async (req: Request, res: Response): Promise<Response> => {
   const { id } = req.body;
   try {
-    const response: QueryResult = await pool.query(QITEM, [id]);
+    const response: QueryResult = await postgreSQLConnect.query(QITEM, [id]);
     return res.status(200).json(response.rows);
   } catch (e) {
     console.log(e);
@@ -42,7 +41,7 @@ const getItem = async (req: Request, res: Response): Promise<Response> => {
 const insertItem = async (req: Request, res: Response): Promise<Response> => {
   const { firtsname, middlename, lastname, phonenumber, birthday, email } = req.body;
   try {
-    const response: QueryResult  = await pool.query(QINSERT, [
+    const response: QueryResult  = await postgreSQLConnect.query(QINSERT, [
       firtsname,
       middlename,
       lastname,
@@ -50,7 +49,7 @@ const insertItem = async (req: Request, res: Response): Promise<Response> => {
       birthday,
       email,
     ]);
-    const lastItem: QueryResult = await pool.query(QMAXITEM);
+    const lastItem: QueryResult = await postgreSQLConnect.query(QMAXITEM);
     return res
       .status(200)
       .json({ message: "Item Added OK", rowcount: response.rowCount, element: lastItem.rows });
@@ -63,8 +62,8 @@ const insertItem = async (req: Request, res: Response): Promise<Response> => {
 const updateItem = async (req: Request, res: Response): Promise<Response> => {
   const { id, firtsname, middlename, lastname, phonenumber, email } = req.body;
   try {
-    const currentItem: QueryResult = await pool.query(QITEM, [id]);
-    const response: QueryResult = await pool.query(QUPDATE, [
+    const currentItem: QueryResult = await postgreSQLConnect.query(QITEM, [id]);
+    const response: QueryResult = await postgreSQLConnect.query(QUPDATE, [
       firtsname,
       middlename,
       lastname,
@@ -88,8 +87,8 @@ const updateItem = async (req: Request, res: Response): Promise<Response> => {
 const deleteItem = async (req: Request, res: Response): Promise<Response> => {
   const { id } = req.body;
   try {
-    const currentItem : QueryResult = await pool.query(QITEM, [id]);
-    const response : QueryResult = await pool.query(QDELETE, [id]);
+    const currentItem : QueryResult = await postgreSQLConnect.query(QITEM, [id]);
+    const response : QueryResult = await postgreSQLConnect.query(QDELETE, [id]);
     return res.status(200).json({
       message: "Item deleted OK",
       rowcount: response.rowCount,
