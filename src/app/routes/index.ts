@@ -12,7 +12,7 @@ import { userRouter } from "./user";
 
 router.get("/", homePage);
 router.get("/get", getItems);
-router.get("/getitem", getItem);
+router.post("/getitem", getItem);
 router.post("/insert", insertItem);
 router.post("/update", updateItem);
 router.post("/delete", deleteItem);
