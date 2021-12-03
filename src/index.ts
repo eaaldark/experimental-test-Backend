@@ -1,7 +1,7 @@
 import express from "express";
 import FileRoutes from "./app/routes/index";
 import cors from "cors";
-import { CLIENT_HOST, API_PORT } from "./app/config/config_env";
+import { CLIENT_HOST, API_PORT, NODE_ENV } from "./app/config/config_env";
 
 const app = express();
 const whiteList: any = [CLIENT_HOST];
@@ -28,6 +28,6 @@ app.use(FileRoutes);
 
 app.listen(API_PORT, () =>
   console.log(
-    `⚡️ [server]: Server is running at http://localhost:${API_PORT}⚡️`
+    `⚡️ [server]: The server is running as ${NODE_ENV} at the address http://localhost:${API_PORT} ⚡️`
   )
 );

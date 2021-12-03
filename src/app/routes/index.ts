@@ -7,7 +7,7 @@ import {
   homePage,
   updateItem,
   deleteItem,
-} from "../controllers/controller";
+} from "../controllers/PublicController";
 import { userRouter } from "./user";
 
 router.get("/", homePage);

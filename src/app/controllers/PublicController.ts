@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import { postgreSQLConnect, QueryResult } from "../config/database";
 
 //Queries
-const QITEMS = "select * from public.experimental_table";
-const QITEM = "select * from public.experimental_table where id = $1";
+const QITEMS = "SELECT * FROM public.experimental_table";
+const QITEM = "SELECT * FROM public.experimental_table where id = $1";
 const QINSERT = "INSERT INTO public.experimental_table(firtsname, middlename, lastname, phonenumber, birthday, email) values ($1, $2, $3, $4, $5, $6);";
 const QUPDATE = "UPDATE public.experimental_table SET firtsname=$1, middlename=$2, lastname=$3, phonenumber=$4, email=$5 WHERE id = $6;";
 const QDELETE = "DELETE FROM public.experimental_table WHERE id = $1;";

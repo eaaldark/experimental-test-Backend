@@ -1,7 +1,7 @@
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import { postgreSQLConnect, QueryResult } from "../config/database";
-import sign from "jsonwebtoken";
-import bcrypt from "bcrypt";
 import cors from "cors";
 
 const login = async (req: Request, res: Response): Promise<Response> => {
