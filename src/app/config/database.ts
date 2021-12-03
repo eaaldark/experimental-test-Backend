@@ -1,5 +1,11 @@
 import { Pool, QueryResult } from "pg";
-import { PG_DATABASE, PG_HOST, PG_PORT, PG_USER, PS_PASSWORD } from "./config_env";
+import {
+  PG_DATABASE,
+  PG_HOST,
+  PG_PORT,
+  PG_USER,
+  PS_PASSWORD,
+} from "./config_env";
 
 const postgreSQLConnect = new Pool({
   user: PG_USER,
@@ -18,9 +24,9 @@ postgreSQLConnect.connect((err, client, release) => {
     release();
     if (err) {
       return console.error("Error executing query", err.stack);
+    } else {
+      return console.log(`⚡️ The database was started at ${result.rows[0].now}⚡️`);
     }
-
-    console.log(`⚡️ The database was started at ${result.rows[0].now}⚡️`);
   });
 });
 
