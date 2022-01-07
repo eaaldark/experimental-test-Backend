@@ -1,4 +1,4 @@
-CREATE SEQUENCE public.experimental_table_id_seq
+CREATE SEQUENCE public.experimental_table_id_seq;
 
 CREATE TABLE public.experimental_table
 (
@@ -10,7 +10,7 @@ CREATE TABLE public.experimental_table
     birthday timestamp with time zone,
     email character varying COLLATE pg_catalog."default",
     CONSTRAINT experimental_table_pkey PRIMARY KEY (id)
-)
+);
 
 TABLESPACE pg_default;
 
