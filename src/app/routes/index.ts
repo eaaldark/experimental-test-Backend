@@ -1,5 +1,6 @@
 import { Router } from "express";
-const router = Router();
+import { authRoute } from "./auth";
+
 import {
   insertItem,
   getItems,
@@ -8,14 +9,15 @@ import {
   updateItem,
   deleteItem,
 } from "../controllers/PublicController";
-import { userRouter } from "./user";
+const router = Router();
 
+router.use("/user", authRoute);
 router.get("/", homePage);
 router.get("/get", getItems);
 router.post("/getitem", getItem);
 router.post("/insert", insertItem);
 router.post("/update", updateItem);
 router.post("/delete", deleteItem);
-router.use("/user", userRouter);
+router.use("/user", authRoute);
 
 export default router;
