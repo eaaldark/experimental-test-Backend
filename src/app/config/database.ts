@@ -1,4 +1,4 @@
-import { Pool, QueryResult } from "pg";
+import { Pool, PoolClient, QueryResult } from "pg";
 import {
   PG_DATABASE,
   PG_HOST,
@@ -15,7 +15,7 @@ const postgreSQLConnect = new Pool({
   port: Number(PG_PORT),
 });
 
-postgreSQLConnect.connect((err, client, release) => {
+postgreSQLConnect.connect((err: Error, client: PoolClient, release) => {
   if (err) {
     return console.error("Error acquiring client", err.stack);
   }
